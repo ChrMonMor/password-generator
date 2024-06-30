@@ -8,14 +8,14 @@ class PasswordGenerator {
 
         $password = '';
         $wantedSum = 0;
-        $wantedArrayCount = count($wantedSymbols);
         $pools = $this->get_pools();
+        $poolsCount = count($pools);
+        $wantedArrayCount = count($wantedSymbols);
 
-        if(count($pools) < $wantedArrayCount) {
-            die("The pool is missing a category of wanted symbols");
-        }
-
-        for ($i=0; $i < $wantedArrayCount; $i++) { 
+        for ($i=0; $i < $poolsCount; $i++) { 
+            if($i >= $wantedArrayCount){
+                break;
+            }
             $wantedSum += $wantedSymbols[$i];
             $password .= $this->get_rand_string($wantedSymbols[$i], array($pools[$i]));
         }
