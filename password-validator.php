@@ -1,7 +1,7 @@
 <?php 
 
 class PasswordValidator {
-    public static function validate($password):array {
+    public static function validate(string $password):array {
         $errors = array();
 
         // Validate password strength
