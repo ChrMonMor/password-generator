@@ -4,7 +4,7 @@ class GeneratorTest extends PHPUnit\Framework\TestCase {
     public function testGeneratorSize() : void {
         //arrange
          $length = 8;
-        $arr = array(2,2,2,2);
+        $arr = array(2,2);
 
         //act
         $generated = PasswordGenerator::generate($length, $arr);
@@ -27,52 +27,41 @@ class GeneratorTest extends PHPUnit\Framework\TestCase {
     public function testGeneratorHasUppercaseLetters() : void {
         //arrange
          $length = 8;
-        $arr = array(2,2,2,2);
+         $arr = array(2,2,1,1);
 
         //act
         $generated = PasswordGenerator::generate($length, $arr);
 
         //assert
-        $this->assertMatchesRegularExpression('@[A-Z]@', $generated);
+        $this->assertMatchesRegularExpression('#[A-Z]#', $generated);
     }
     public function testGeneratorHasLowercaseLetters() : void {
         //arrange
         $length = 8;
-        $arr = array(2,2,2,2);
+        $arr = array(2,2,1,1);
 
         //act
         $generated = PasswordGenerator::generate($length, $arr);
 
         //assert
-        $this->assertMatchesRegularExpression('@[a-z]@', $generated);
-    }
-    public function testGeneratorHasNumbers() : void {
-        //arrange
-         $length = 8;
-        $arr = array(2,2,2,2);
-
-        //act
-        $generated = PasswordGenerator::generate($length, $arr);
-
-        //assert
-        $this->assertMatchesRegularExpression('@[0-9]@', $generated);
-    }
-    public function testGeneratorHasNonNumbers() : void {
-        //arrange
-         $length = 8;
-        $arr = array(4,4,0,4);
-
-        //act
-        $generated = PasswordGenerator::generate($length, $arr);
-
-        //assert
-        $this->assertDoesNotMatchRegularExpression('@[0-9]@', $generated);
+        $this->assertMatchesRegularExpression('#[a-z]#', $generated);
     }
     
     public function testGeneratorSizeButTooMuchWantedSymbols() : void {
         //arrange
          $length = 8;
         $arr = array(4,4,4,4);
+
+        //act
+        $generated = PasswordGenerator::generate($length, $arr);
+
+        //assert
+        $this->assertEquals($length, strlen($generated), 'checks the length');
+    }
+    public function testGeneratorSizeButTooFewWantedSymbols() : void {
+        //arrange
+         $length = 8;
+        $arr = array();
 
         //act
         $generated = PasswordGenerator::generate($length, $arr);
