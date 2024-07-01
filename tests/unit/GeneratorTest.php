@@ -15,7 +15,7 @@ class GeneratorTest extends PHPUnit\Framework\TestCase {
     public function testGeneratorIsString() : void {
         //arrange
          $length = 8;
-        $arr = array(2,2,2,2);
+        $arr = array(1,1,1,1);
 
         //act
         $generated = PasswordGenerator::generate($length, $arr);
@@ -27,7 +27,7 @@ class GeneratorTest extends PHPUnit\Framework\TestCase {
     public function testGeneratorHasUppercaseLetters() : void {
         //arrange
          $length = 8;
-         $arr = array(2,2,1,1);
+         $arr = array(1,1,1,1);
 
         //act
         $generated = PasswordGenerator::generate($length, $arr);
@@ -38,7 +38,7 @@ class GeneratorTest extends PHPUnit\Framework\TestCase {
     public function testGeneratorHasLowercaseLetters() : void {
         //arrange
         $length = 8;
-        $arr = array(2,2,1,1);
+        $arr = array(1,1,1,1);
 
         //act
         $generated = PasswordGenerator::generate($length, $arr);
